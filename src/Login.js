@@ -1,12 +1,11 @@
 import React,{useState} from 'react'
+
 import "./css/login.css"
 import SignUp from './SignUp';
-function Login() {
-    const [signIn,setSignIn] = useState(false);
-    console.log(signIn)
-    const handleLogin = () => {
-        setSignIn(!signIn)
-    }
+
+function Login({signUp, funcUp, funcDown}) {
+   
+    console.log('signUp',signUp)
     return (
         <div className = 'login'>
             <div className = 'login__header'>
@@ -18,20 +17,19 @@ function Login() {
                 </button>
             </div>
             
-            <div className = 'login__body' 
-            onClick = {()=>{setSignIn(false)}}
-            >
+            <div className = 'login__body' onClick = {signUp ? funcDown : null}  >
                 {
-                    signIn ? (<SignUp onClick = {(e)=>e.stopPropagation()}/>) : (
+                    signUp ? (<SignUp onClick = {(e)=>e.stopPropagation()}/>) : (
                         <>
                         <h1>영화, TV 프로그램을 무제한으로.</h1>
                         <h2>다양한 디바이스에서 시청하세요. 언제든 해지하실 수 있습니다.</h2>
                         <h3>시청할 준비가 되셨나요? 멤버십을 등록하거나 재시작하시려면 이메일 주소를 입력하세요.</h3>
         
-                        <form className = 'login__form' onSubmit={handleLogin}  >
+                        <form className = 'login__form'   >
                             <input type='text' placeholder='Email Address' />
                             <button 
                             // onClick={()=>setSignIn(true)}
+                            onClick  = {funcUp}
                             >
                                 시작하기</button> 
                         </form>
@@ -41,11 +39,8 @@ function Login() {
             </div>    
     
             
-                <div className={signIn ? 'login__modalOut login__gradient' : 'login__gradient'} onClick = {(e)=>{setSignIn(false)
-                    
-                }
-               
-                }>
+                <div className={signUp ? 'login__modalOut login__gradient' : 'login__gradient'} 
+                onClick = {funcDown}>
 
                 </div>
         </div>

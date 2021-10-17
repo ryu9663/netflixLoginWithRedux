@@ -78,6 +78,7 @@
     letter-spacing: 1px;
     cursor : pointer;
     color : #fff;
+    z-index: 9;
 }
 
 .login__gradient{
